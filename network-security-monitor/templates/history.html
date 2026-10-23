@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alert History</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar"><div><p class="eyebrow">LOCAL DEFENSIVE TOOL</p><h1>Alert History</h1><p class="sub">Recent rule-based review events</p></div><a class="button" href="{{ url_for('index') }}">Back to dashboard</a></header>
+  <main><section class="panel">
+    {% if events %}
+    <div class="table-wrap"><table><thead><tr><th>Time</th><th>Level</th><th>Alert</th><th>Details</th><th>Local address</th></tr></thead>
+    <tbody>{% for event in events %}<tr><td>{{ event.created_at }}</td><td>{{ event.severity }}</td><td>{{ event.title }}</td><td>{{ event.details }}</td><td>{{ event.local_address }}</td></tr>{% endfor %}</tbody></table></div>
+    {% else %}<p class="empty">No alerts have been recorded yet.</p>{% endif %}
+  </section></main>
+</body>
+</html>

@@ -1,0 +1,30 @@
+* { box-sizing: border-box; }
+:root { color-scheme: dark; }
+body { margin: 0; background: #0b1120; color: #e5edf8; font-family: Inter, "Segoe UI", Arial, sans-serif; }
+.topbar { padding: 30px max(22px, calc((100% - 1180px)/2)); display: flex; align-items: center; justify-content: space-between; gap: 20px; border-bottom: 1px solid #263249; background: #101a2d; }
+h1 { margin: 5px 0; font-size: clamp(24px, 4vw, 36px); }
+h2 { margin: 0 0 8px; font-size: 19px; }
+p { color: #9aabc4; margin: 6px 0; }
+.eyebrow { color: #55d6be; letter-spacing: 2px; font-size: 11px; font-weight: 800; }
+.sub { font-size: 14px; }
+.badge, .pill { border-radius: 30px; padding: 8px 12px; background: #123c39; color: #70e6cb; font-size: 12px; white-space: nowrap; }
+main { max-width: 1180px; margin: 28px auto; padding: 0 20px 40px; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 20px; }
+.card, .panel, .notice { border: 1px solid #263249; border-radius: 14px; background: #111b2e; padding: 20px; }
+.card span { color: #9aabc4; font-size: 13px; display: block; }
+.card strong { display: block; margin-top: 10px; font-size: 30px; }
+.card strong.small { font-size: 15px; }
+.panel { margin-bottom: 20px; }
+.panel-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+.button { display: inline-block; border: 0; border-radius: 8px; padding: 10px 14px; background: #1db99b; color: #061b1b; font-weight: 700; text-decoration: none; cursor: pointer; white-space: nowrap; }
+.button.secondary { background: #24344d; color: #e5edf8; }
+.table-wrap { width: 100%; overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; min-width: 650px; font-size: 13px; }
+th, td { text-align: left; padding: 13px 12px; border-bottom: 1px solid #263249; }
+th { color: #91a6c4; font-weight: 600; }
+td { color: #dce6f5; }
+.empty { padding: 18px 0; }
+.notice { border-color: #795f27; margin-bottom: 20px; }
+.notice h2 { color: #ffd77d; }
+.footnote { font-size: 12px; text-align: center; padding: 10px; }
+@media (max-width: 700px) { .topbar { align-items: flex-start; flex-direction: column; } .stats { grid-template-columns: 1fr; } .panel-heading { align-items: flex-start; flex-direction: column; } }

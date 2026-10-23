@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Network Security Monitor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">LOCAL DEFENSIVE TOOL</p>
+      <h1>Network Security Monitor</h1>
+      <p class="sub">Connection overview for this computer</p>
+    </div>
+    <span class="badge">● Monitoring</span>
+  </header>
+
+  <main>
+    <section class="stats">
+      <article class="card"><span>Total connections</span><strong>{{ total }}</strong></article>
+      <article class="card"><span>Review alerts</span><strong>{{ alerts|length }}</strong></article>
+      <article class="card"><span>Last checked</span><strong class="small">{{ checked_at }}</strong></article>
+    </section>
+
+    {% if errors %}
+    <section class="notice">
+      <h2>Monitoring notice</h2>
+      {% for error in errors %}<p>{{ error }}</p>{% endfor %}
+    </section>
+    {% endif %}
+
+    <section class="panel">
+      <div class="panel-heading">
+        <div><h2>Security review alerts</h2><p>Rule-based indicators for manual review; not proof of an attack.</p></div>
+        <a class="button secondary" href="{{ url_for('history') }}">View history</a>
+      </div>
+      {% if alerts %}
+      <div class="table-wrap"><table>
+        <thead><tr><th>Level</th><th>Alert</th><th>Details</th><th>Local address</th></tr></thead>
+        <tbody>{% for alert in alerts %}
+          <tr><td><span class="pill">{{ alert.severity }}</span></td><td>{{ alert.title }}</td><td>{{ alert.details }}</td><td>{{ alert.local_address }}</td></tr>
+        {% endfor %}</tbody>
+      </table></div>
+      {% else %}
+      <p class="empty">No watch-list matches were found in this scan.</p>
+      {% endif %}
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading"><div><h2>Network connections</h2><p>Information reported by your operating system.</p></div>
+        <a class="button" href="{{ url_for('index') }}">Refresh scan</a>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Local address</th><th>Remote IP</th><th>Remote port</th><th>Status</th><th>PID</th></tr></thead>
+        <tbody>{% for c in connections %}
+          <tr><td>{{ c.local_address }}</td><td>{{ c.remote_ip }}</td><td>{{ c.remote_port }}</td><td>{{ c.status }}</td><td>{{ c.pid }}</td></tr>
+        {% else %}
+          <tr><td colspan="5" class="empty">No connections returned, or access was restricted.</td></tr>
+        {% endfor %}</tbody>
+      </table></div>
+    </section>
+    <p class="footnote">Use only on computers and networks you own or are authorized to monitor. An unfamiliar IP or port is not automatically malicious.</p>
+  </main>
+</body>
+</html>
