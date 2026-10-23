@@ -78,3 +78,5 @@ requirements.txt       Dependencies
 ## License
 
 MIT License. Add a `LICENSE` file if you choose to distribute it under MIT terms.
+## AUTHOR 
+GitHub: jegar9634-lab
